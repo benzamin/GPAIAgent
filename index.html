@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everything in 1 app</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Everything in 1 app</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Character -->
+            <div class="character character-left">
+                <div class="person person-female"></div>
+                <div class="feature-icon icon-gift">
+                    <span>🎁</span>
+                </div>
+            </div>
+
+            <!-- Phone Mockup -->
+            <div class="phone-container">
+                <div class="phone">
+                    <div class="phone-header"></div>
+                    <div class="phone-content">
+                        <!-- Placeholder for chat/content -->
+                        <div class="chat-item">
+                            <div class="avatar"></div>
+                            <div class="message-lines">
+                                <div class="line long"></div>
+                                <div class="line short"></div>
+                            </div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="avatar"></div>
+                            <div class="message-lines">
+                                <div class="line medium"></div>
+                                <div class="line short"></div>
+                            </div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="avatar"></div>
+                            <div class="message-lines">
+                                <div class="line long"></div>
+                                <div class="line medium"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature Icons around phone -->
+                <div class="feature-icon icon-top">
+                    <span>📱</span>
+                </div>
+                <div class="feature-icon icon-bottom-left">
+                    <span>▶️</span>
+                </div>
+                <div class="feature-icon icon-bottom-center">
+                    <span>⚙️</span>
+                </div>
+            </div>
+
+            <!-- Right Character -->
+            <div class="character character-right">
+                <div class="person person-male"></div>
+                <div class="feature-icon icon-check">
+                    <span>✅</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Language Selection -->
+        <div class="language-selector">
+            <button class="lang-btn active">English</button>
+            <button class="lang-btn">বাংলা</button>
+        </div>
+
+        <!-- Sign In Section -->
+        <div class="auth-section">
+            <button class="sign-in-btn">
+                <span class="logo">📱</span>
+                Sign In
+            </button>
+            <a href="#" class="guest-link">Use as a guest</a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>By proceeding you agree to our 
+                <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- ElevenLabs AI Agent Widget -->
+    <elevenlabs-convai agent-id="agent_01k0pmgbfvftcscm33ccs40xy2"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+</body>
+</html>
