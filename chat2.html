@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everything in 1 app</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
@@ -99,22 +100,6 @@
 
     <!-- Floating Sentences Container -->
     <div id="floating-container"></div>
-
-    <!-- Chat with Agent Button -->
-    <div id="chat-with-agent-btn" class="chat-floating-btn">
-        Chat with Agent
-    </div>
-
-    <!-- Chat Popup -->
-    <div id="chat-popup" class="chat-popup">
-        <div class="chat-popup-header">
-            <span>Agent Chat</span>
-            <button id="close-chat-popup" class="close-btn">&times;</button>
-        </div>
-        <div class="chat-popup-content">
-            <iframe src="https://automation.grameenphone.academy/webhook/e5616171-e3b5-4c39-81d4-67409f9fa60a/chat" frameborder="0"></iframe>
-        </div>
-    </div>
     
     <!-- Floating Sentences Script -->
     <script>
@@ -231,29 +216,14 @@
                 }, 5000);
             });
         });
+    </script>
 
-        // Chat Button Functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const chatBtn = document.getElementById('chat-with-agent-btn');
-            const chatPopup = document.getElementById('chat-popup');
-            const closeBtn = document.getElementById('close-chat-popup');
-            
-            // Open popup when chat button is clicked
-            chatBtn.addEventListener('click', () => {
-                chatPopup.classList.add('active');
-            });
-            
-            // Close popup when close button is clicked
-            closeBtn.addEventListener('click', () => {
-                chatPopup.classList.remove('active');
-            });
-            
-            // Close popup when clicking outside of it
-            document.addEventListener('click', (e) => {
-                if (!chatPopup.contains(e.target) && e.target !== chatBtn) {
-                    chatPopup.classList.remove('active');
-                }
-            });
+    <!-- n8n Chat Widget -->
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://automation.grameenphone.academy/webhook/e5616171-e3b5-4c39-81d4-67409f9fa60a/chat'
         });
     </script>
 </body>
