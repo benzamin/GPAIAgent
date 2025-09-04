@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everything in 1 app</title>
+    <title>GP A1 Agent</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>Everything in 1 app</h1>
+            <h1>GP A1 Agent</h1>
         </header>
 
         <!-- Main Content -->
@@ -108,7 +108,7 @@
     <!-- Chat Popup -->
     <div id="chat-popup" class="chat-popup">
         <div class="chat-popup-header">
-            <span>Agent Chat</span>
+            <span class="live-indicator">LIVE <span class="flashing-dot"></span></span>
             <button id="close-chat-popup" class="close-btn">&times;</button>
         </div>
         <div class="chat-popup-content">
@@ -121,12 +121,22 @@
         class FloatingSentences {
             constructor() {
                 this.sentences = [
-                    "Call the agent and ask it to check your balance",
-                    "Ask it to check how much data you used yesterday",
-                    "You can also ask it to suggest a pack for you",
-                    "Ask about available offers and promotions",
-                    "Monitor your usage patterns easily",
-                    "Find the best deals tailored for you"
+                    "Recharge any amount in your account",
+    "Ask how you can get 5G network ",
+    "Purchase a pack via voice/text command",
+    "Find out GP Centers inside Dhaka",
+    "Know about GPFi or Alo IoT products",
+    "Check your internet or voice balance",
+    "Ask it to check how much data you used yesterday",
+    "Know whom did you called the longest yesterday",
+    "Get details of your last 5 calls",
+    "You can also ask it to suggest a pack for you",
+    "Get all the internet packs under 200 taka",
+    "Ask for Air Ticket deals for GP star",
+    "Know hotel deals for CoxsBazar GP star",
+    "Ask about available packs & offers",
+    "Monitor your usage patterns easily",
+    "Find the best deals tailored for you"
                 ];
                 this.container = document.getElementById('floating-container');
                 this.currentIndex = 0;
@@ -135,27 +145,26 @@
             }
 
             init() {
-                // Start the floating animation after a short delay
+                // Start the floating animation after a shorter delay
                 setTimeout(() => {
                     this.showNextSentence();
-                }, 2000);
+                }, 1000);
             }
 
             getRandomPosition() {
                 const container = document.querySelector('.container');
                 const containerRect = container.getBoundingClientRect();
-                const margin = 50;
                 
-                // Define safe zones to avoid overlapping with main content
+                // More centered positions with less variance
                 const positions = [
-                    { top: '15%', left: '10%' },
-                    { top: '20%', right: '10%' },
-                    { top: '65%', left: '5%' },
-                    { top: '70%', right: '5%' },
-                    { top: '25%', left: '15%' },
-                    { top: '75%', right: '15%' },
-                    { top: '30%', left: '8%' },
-                    { top: '80%', right: '8%' }
+                    { top: '30%', left: '25%' },
+                    { top: '35%', right: '25%' },
+                    { top: '40%', left: '30%' },
+                    { top: '45%', right: '30%' },
+                    { top: '50%', left: '25%' },
+                    { top: '55%', right: '25%' },
+                    { top: '40%', left: '40%' },
+                    { top: '45%', right: '40%' }
                 ];
                 
                 return positions[Math.floor(Math.random() * positions.length)];
@@ -183,25 +192,25 @@
                 // Trigger fade-in animation
                 setTimeout(() => {
                     element.classList.add('fade-in');
-                }, 100);
+                }, 50);
                 
-                // Start fade-out after 3 seconds
+                // Start fade-out after 2 seconds
                 setTimeout(() => {
                     element.classList.add('fade-out');
-                }, 3500);
+                }, 2000);
                 
                 // Remove element after fade-out completes
                 setTimeout(() => {
                     if (element.parentNode) {
                         element.parentNode.removeChild(element);
                     }
-                }, 4500);
+                }, 2800);
                 
                 // Show next sentence
                 this.currentIndex = (this.currentIndex + 1) % this.sentences.length;
                 
-                // Schedule next sentence (random interval between 4-7 seconds)
-                const nextDelay = 4000 + Math.random() * 3000;
+                // Schedule next sentence (shorter interval between 2-3 seconds)
+                const nextDelay = 2000 + Math.random() * 1000;
                 setTimeout(() => {
                     this.showNextSentence();
                 }, nextDelay);
@@ -221,15 +230,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const floatingSentences = new FloatingSentences();
             
-            // Pause animations when user interacts with the page
-            let interactionTimer;
-            document.addEventListener('click', () => {
-                floatingSentences.pause();
-                clearTimeout(interactionTimer);
-                interactionTimer = setTimeout(() => {
-                    floatingSentences.resume();
-                }, 5000);
-            });
+            // We're removing the interaction pause that was stopping animations
+            // This ensures sentences keep floating even when chat window opens/closes
         });
 
         // Chat Button Functionality
@@ -239,13 +241,15 @@
             const closeBtn = document.getElementById('close-chat-popup');
             
             // Open popup when chat button is clicked
-            chatBtn.addEventListener('click', () => {
+            chatBtn.addEventListener('click', (e) => {
                 chatPopup.classList.add('active');
+                e.stopPropagation(); // Prevent event from reaching document
             });
             
             // Close popup when close button is clicked
-            closeBtn.addEventListener('click', () => {
+            closeBtn.addEventListener('click', (e) => {
                 chatPopup.classList.remove('active');
+                e.stopPropagation(); // Prevent event from reaching document
             });
             
             // Close popup when clicking outside of it
@@ -253,6 +257,11 @@
                 if (!chatPopup.contains(e.target) && e.target !== chatBtn) {
                     chatPopup.classList.remove('active');
                 }
+            });
+            
+            // Prevent clicks inside popup from closing it
+            chatPopup.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent click from reaching document
             });
         });
     </script>
